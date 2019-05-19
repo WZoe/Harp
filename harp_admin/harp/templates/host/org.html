@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Organizations of {% endblock %}Host - {{ orgs[0][2] }}</h1>
+{% endblock %}
+
+{% block content %}
+    {#    基本信息#}
+    <table>
+        <tbody>
+        <tr>
+            <th>Organization ID</th>
+            <th>Organization Name</th>
+            <th>Admin</th>
+        </tr>
+        {% for item in orgs %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td><a class="action" href={{ url_for('status.admin', id=item[0]) }}>Admin</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

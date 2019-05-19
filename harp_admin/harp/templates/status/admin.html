@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Administration{% endblock %}: Organization {{ id }} </h1>
+{% endblock %}
+
+{% block content %}
+    {#    基本信息#}
+    <table>
+        <tbody>
+        <tr>
+            <th>Organization ID</th>
+            <th>Organization Name</th>
+            <th>Host IP</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+            <td>{{ ip }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Channels joined</h3>
+    {% for item in channels %}
+        <a class="action"
+           href="{{ url_for('status.channel', id=id, channel=item['channel_id']) }}">{{ item['channel_id'] }}</a><br>
+    {% endfor %}
+
+    <h3>Join Channel</h3>
+    <form method="post">
+        <label>Channel Name:</label>
+        <input name="chaname" id="chaname">
+        <p>If the channel does't exist, it will be created.</p>
+        <input type="submit" value="Create and Join"></form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Administration{% endblock %}: Chaincode - {{ chaincode }} </h1>
+{% endblock %}
+
+{% block content %}
+    {#    基本信息#}
+    <table>
+        <tbody>
+        <tr>
+            <th>Organization ID</th>
+            <th>Organization Name</th>
+            <th>Host IP</th>
+            <th>Channel</th>
+        </tr>
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ name }}</td>
+            <td>{{ ip }}</td>
+            <td>{{ channel }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Chaincode Function</h3>
+    <form name='form' method="post">
+        <label for="fcn">Function Name</label>
+        <input name="fcn" id="fcn" required>
+        <label for="arg">Arguments</label>
+        <input name="arg" id="arg" required>
+        <label for="target">Target</label>
+        <input name="target" id="target">
+        <p>Leave <b>Target</b> blank if you want to submit for endorsement for all organizations.</p>
+        <input type="submit" name='action' value="Invoke">
+        <input type="submit" name='action' value="Query">
+    </form>
+
+
+
+{% endblock %}

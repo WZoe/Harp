@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Add User{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="username">Username</label>
+        <input name="username" id="username" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        {% if g.user['usertype'] == 0 %}
+            <label for="usertype">User Type</label>
+            <input type="radio" name="usertype" id="usertype" value="0"> Admin
+            <input type="radio" name="usertype" id="usertype" value="1" checked> General User
+            <label for="org_id">Organization ID</label>
+            <input type="number" name="org_id" id="org_id">
+            <p> If it is admin, please leave Organization ID blank.</p>
+        {% endif %}
+        {% if g.user['usertype'] == 1 %}
+            <label for="org_id">Organization ID</label>
+            <input type="number" name="org_id_restricted" id="org_id_restricted" value="{{ g.user['org_id'] }}"
+                   disabled>
+            <p> You can only add new user to your organization.</p>
+        {% endif %}
+
+        <input type="submit" value="Add User">
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Add A New Host{% endblock %}</h1>
+    {% if g.user['usertype'] == 0 %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="ip">Host IP</label>
+        <input name="ip" id="ip" required>
+        <label for="user">Host User</label>
+        <input name="user" id="user" value="root" required>
+        <label for="port">SSH Port</label>
+        <input type="number" name="port" id="port" value="22">
+        <label for="deployornot">Need Environment Configuration?</label>
+        <input type="radio" name="deployornot" value="1" checked>Yes
+        <input type="radio" name="deployornot" value="0">No
+        <input type="submit" name='action' value="Deploy">
+    </form>
+    <p><b>Pre-requisite:</b>The user is NOPASSWD sudoer.</p>
+{% endblock %}

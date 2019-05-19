@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Add A New Docker{% endblock %}</h1>
+    {% if g.user['usertype'] == 0 %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="name">Name</label>
+        <input name="name" id="name" required>
+        <label for="id">Host ID</label>
+        <input name="id" id="id" required>
+        <label for="api_port">API Port</label>
+        <input type="number" name="api_port" id="api_port" value="4000" required>
+        <label for="d_port">Docker Daemon Port</label>
+        <input type="number" name="d_port" id="d_port" value="2376" required>
+
+        <label for="type">Docker Type</label>
+        <input type="radio" name="type" value="1" checked>Peer/Organization
+        <input type="radio" name="type" value="0" disabled>Orderer
+        <input type="submit" name='action' value="Create">
+    </form>
+
+{% endblock %}
